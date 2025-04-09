@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>善导AI答问系统</title>
     <style>
-        /* 专业级聊天界面样式 */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background: #f8f9fa;
@@ -26,6 +25,16 @@
             font-size: 18px;
             text-align: center;
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .info-text {
+                /* 确保在小屏幕设备上也是两行显示 */
+                display: flex;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -34,7 +43,10 @@
     <div class="header">
         <h1>善导AI答问系统</h1>
     </div>
-    <div class="info-text">请点击右下角蓝色圆形图标<br>打开智能对话框进行对话</div>
+    <div class="info-text">
+        <span>请点击右下角蓝色圆形图标</span>
+        <span>打开智能对话框进行对话</span>
+    </div>
 
     <!-- 官方提供的SDK脚本 -->
     <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/cn/index.js"></script>
@@ -59,3 +71,4 @@
 </body>
 
 </html>
+    
