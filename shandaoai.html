@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>善导AI答问系统</title>
+    <style>
+        /* 专业级聊天界面样式 */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2d8cf0 0%, #1e6eeb 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .info-text {
+            color: black;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>善导AI答问系统</h1>
+    </div>
+    <div class="info-text">请点击右下角蓝色图标 打开智能对话框进行对话</div>
+
+    <!-- 官方提供的SDK脚本 -->
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/cn/index.js"></script>
+    <script>
+        // 初始化聊天客户端
+        const cozeClient = new CozeWebSDK.WebChatClient({
+            config: {
+                bot_id: '7484613753384943666',
+            },
+            componentProps: {
+                title: 'Coze',
+            },
+            auth: {
+                type: 'token',
+                token: 'pat_v1XzWfSBsCaFon8nVqgGDp95Y8EtGmJdE26fm59u1k0in9Uicj4bwDNzgGJ8glXX',
+                onRefreshToken: function () {
+                    return 'pat_v1XzWfSBsCaFon8nVqgGDp95Y8EtGmJdE26fm59u1k0in9Uicj4bwDNzgGJ8glXX'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
