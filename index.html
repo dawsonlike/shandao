@@ -35,6 +35,12 @@
                 flex-direction: column;
             }
         }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -46,30 +52,36 @@
         <span>请点击右下角蓝色圆形图标</span>
         <span>打开智能对话框进行对话</span>
     </div>
+    <div id="error" class="error-message" style="display: none;">SDK 加载或初始化失败，请稍后重试。</div>
 
     <!-- Coze官方SDK（1.2.0-beta.6版本） -->
-    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/cn/index.js"></script>
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/cn/index.js"
+        onerror="document.getElementById('error').style.display = 'block'"></script>
     <script>
-        // 增强型初始化配置
-        const cozeClient = new CozeWebSDK.WebChatClient({
-            config: {
-                bot_id: '7484613753384943666', // 目标智能体ID
-                enableSound: true,  // 保留音效配置
-            },
-            componentProps: {
-                title: '善导AI助手',
-                launcherIcon: 'BOT_AVATAR',    // 强制使用bot头像
-                useBotAvatarAsLauncher: true,  // 双保险配置
-                showInitialMessage: false      // 可选：关闭欢迎消息
-            },
-            auth: {
-                type: 'token',
-                token: 'pat_v1XzWfSBsCaFon8nVqgGDp95Y8EtGmJdE26fm59u1k0in9Uicj4bwDNzgGJ8glXX',
-                onRefreshToken: function () {
-                    return 'pat_v1XzWfSBsCaFon8nVqgGDp95Y8EtGmJdE26fm59u1k0in9Uicj4bwDNzgGJ8glXX'
+        try {
+            // 增强型初始化配置
+            const cozeClient = new CozeWebSDK.WebChatClient({
+                config: {
+                    bot_id: '7484613753384943666', // 目标智能体ID
+                    enableSound: true,  // 保留音效配置
+                },
+                componentProps: {
+                    title: '善导AI助手',
+                    launcherIcon: 'BOT_AVATAR',    // 强制使用bot头像
+                    useBotAvatarAsLauncher: true,  // 双保险配置
+                    showInitialMessage: false      // 可选：关闭欢迎消息
+                },
+                auth: {
+                    type: 'token',
+                    token: 'pat_v1XzWfSBsCaFon8nVqgGDp95Y8EtGmJdE26fm59u1k0in9Uicj4bwDNzgGJ8glXX',
+                    onRefreshToken: function () {
+                        return 'pat_v1XzWfSBsCaFon8nVqgGDp95Y8EtGmJdE26fm59u1k0in9Uicj4bwDNzgGJ8glXX'
+                    }
                 }
-            }
-        });
+            });
+        } catch (error) {
+            document.getElementById('error').style.display = 'block';
+        }
     </script>
 </body>
 
