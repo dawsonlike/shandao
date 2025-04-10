@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>善导AI答问系统</title>
     <style>
-        /* 专业级聊天界面样式 */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background: #f8f9fa;
@@ -26,6 +25,15 @@
             font-size: 18px;
             text-align: center;
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .info-text {
+                display: flex;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -34,18 +42,25 @@
     <div class="header">
         <h1>善导AI答问系统</h1>
     </div>
-    <div class="info-text">请点击右下角蓝色图标 打开智能对话框进行对话</div>
+    <div class="info-text">
+        <span>请点击右下角蓝色圆形图标</span>
+        <span>打开智能对话框进行对话</span>
+    </div>
 
-    <!-- 官方提供的SDK脚本 -->
+    <!-- Coze官方SDK（1.2.0-beta.6版本） -->
     <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/cn/index.js"></script>
     <script>
-        // 初始化聊天客户端
+        // 增强型初始化配置
         const cozeClient = new CozeWebSDK.WebChatClient({
             config: {
-                bot_id: '7484613753384943666',
+                bot_id: '7484613753384943666', // 目标智能体ID
+                enableSound: true,  // 保留音效配置
             },
             componentProps: {
-                title: 'Coze',
+                title: '善导AI助手',
+                launcherIcon: 'BOT_AVATAR',    // 强制使用bot头像
+                useBotAvatarAsLauncher: true,  // 双保险配置
+                showInitialMessage: false      // 可选：关闭欢迎消息
             },
             auth: {
                 type: 'token',
