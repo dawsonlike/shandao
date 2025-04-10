@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -31,7 +31,6 @@
 
         @media (max-width: 768px) {
             .info-text {
-                /* 确保在小屏幕设备上也是两行显示 */
                 display: flex;
                 flex-direction: column;
             }
@@ -48,16 +47,20 @@
         <span>打开智能对话框进行对话</span>
     </div>
 
-    <!-- 官方提供的SDK脚本 -->
+    <!-- Coze官方SDK（1.2.0-beta.6版本） -->
     <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/cn/index.js"></script>
     <script>
-        // 初始化聊天客户端
+        // 增强型初始化配置
         const cozeClient = new CozeWebSDK.WebChatClient({
             config: {
-                bot_id: '7484613753384943666',
+                bot_id: '7484613753384943666', // 目标智能体ID
+                enableSound: true,  // 保留音效配置
             },
             componentProps: {
-                title: 'Coze',
+                title: '善导AI助手',
+                launcherIcon: 'BOT_AVATAR',    // 强制使用bot头像
+                useBotAvatarAsLauncher: true,  // 双保险配置
+                showInitialMessage: false      // 可选：关闭欢迎消息
             },
             auth: {
                 type: 'token',
@@ -71,4 +74,3 @@
 </body>
 
 </html>
-    
