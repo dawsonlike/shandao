@@ -111,66 +111,66 @@
                     sdkLoaded = true; 
                     clearTimeout(loadTimer); 
                     document.querySelector('.loading-indicator').style.display  = 'none'; 
-                    initializeCoze(); 
+                    初始化Coze(); 
                 }; 
  
-                script.onerror  = function() { 
-                    if (retryCount < MAX_RETRY) { 
-                        retryCount++; 
-                        console.log(` 第${retryCount}次重试加载`); 
+                脚本.错误处理  = 函数() { 
+                    如果 (重试次数 < 最大重试次数) { 
+                        重试次数++; 
+                        控制台.日志(` 第${retryCount}次重试加载`); 
                         setTimeout(loadSDK, 3000 * retryCount); // 增加重试延迟时间 
-                    } else { 
-                        showNetworkError('服务加载失败，请检查网络'); 
-                    } 
+                    } 否则 { 
+                        显示网络错误('服务加载失败，请检查网络'); 
+                    输入：} 
                 }; 
  
-                document.head.appendChild(script);  
-            } 
+                文档.头部.appendChild(脚本);  
+            输入：} 
  
-            function showNetworkError(msg) { 
-                const indicator = document.querySelector('.loading-indicator');  
-                indicator.textContent  = msg; 
-                indicator.style.display  = 'block'; 
+            函数 显示网络错误(消息) { 
+                常量 指示器 = 文档.querySelector('.loading-indicator');  
+                指示器.文本内容  = 消息; 
+                指示器.样式.显示  = '块'; 
                 setTimeout(() => { 
-                    indicator.style.display  = 'none'; 
+                    指示器.样式.显示  = '无'; 
                 }, 3000); 
-            } 
+            输入：} 
  
-            function initializeCoze() { 
-                try { 
-                    const cozeClient = new CozeWebSDK.WebChatClient({ 
-                        config: { 
-                            bot_id: '7494619973366038567', 
-                            enableSound: false, 
-                            enableErrorLogging: true, 
-                            connectionTimeout: 10000 
-                        }, 
-                        componentProps: { 
-                            title: '善导AI助手', 
-                            launcherIcon: 'BOT_AVATAR', 
-                            showInitialMessage: false, 
-                            position: { horizontal: 'right', vertical: 'bottom' } 
-                        }, 
-                        auth: { 
-                            type: 'token', 
-                            token: 'pat_lGE1WvAr0CHzRLTLw5GEDl8Wip7t89pTyws2C4mLdpaOBCCeKW29GitwVpa5dqSx', 
-                            onRefreshToken: () => 'pat_lGE1WvAr0CHzRLTLw5GEDl8Wip7t89pTyws2C4mLdpaOBCCeKW29GitwVpa5dqSx' 
-                        } 
+            函数 初始化Coze() { 
+                尝试{ 
+                    常量 cozeClient = 新 CozeWebSDK.WebChatClient({ 
+                        配置：｛
+                            bot_id：'7494619973366038567'，
+                            启用声音：假，
+                            启用错误日志记录：真，
+                            连接超时：10000 
+                        }，
+                        组件属性：{ 
+                            : '善导AI助手', 
+                            启动器图标：'BOT_AVATAR'，
+                            显示初始消息
+                            位置：{ 水平：'右'，垂直：'底部' } 
+                        }，
+                        认证：{ 
+                            类型：'令牌'，
+                            令牌：'pat_xbe4V7A1Aq3mWvk5LYVfp3c2hor6iERUicMIKdnlv8N1XiOP2PCgzLcFVUlSjMcx'，
+                            onRefreshToken：（） => 'pat_xbe4V7A1Aq3mWvk5LYVfp3c2hor6iERUicMIKdnlv8N1XiOP2PCgzLcFVUlSjMcx' 
+                        输入：} 
                     }); 
  
                     if (/MicroMessenger/i.test(navigator.userAgent))  { 
-                        const weixinReadyHandler = function() { 
+                        常量 weixinReadyHandler = 函数() { 
                             cozeClient.init();  
                             document.removeEventListener('WeixinJSBridgeReady',  weixinReadyHandler); 
                         }; 
                         document.addEventListener('WeixinJSBridgeReady',  weixinReadyHandler); 
                         setTimeout(weixinReadyHandler, 1000); 
-                    } else { 
+                    } 否则{ 
                         cozeClient.init();  
-                    } 
-                } catch (error) { 
-                    console.error('Coze 初始化失败:', error); 
-                    if (retryCount < MAX_RETRY) { 
+                    输入：} 
+                } 捕获 (错误) { 
+                    控制台.错误('Coze 初始化失败:', 错误); 
+                    如果 (重试次数 < 最大重试次数) { 
                         setTimeout(initializeCoze, 3000); // 增加初始化重试延迟时间 
                     } 
                 } 
